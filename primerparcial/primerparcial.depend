@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1538486259 source:d:\matwijiszyn\parcial\primerparcial\directores.c
+	<stdio.h>
+	<stdlib.h>
+	"peliculas.h"
+	"directores.h"
+
+1538490768 d:\matwijiszyn\parcial\primerparcial\peliculas.h
+
+1538490621 d:\matwijiszyn\parcial\primerparcial\directores.h
+
+1538492697 source:d:\matwijiszyn\parcial\primerparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"peliculas.h"
+	"directores.h"
+
+1538492591 source:d:\matwijiszyn\parcial\primerparcial\peliculas.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"peliculas.h"
+	"directores.h"
+
