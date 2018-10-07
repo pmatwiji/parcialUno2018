@@ -27,3 +27,45 @@
 	"peliculas.h"
 	"directores.h"
 
+1538857785 source:c:\users\x__bi\desktop\programacionuno\parcialuno2018\primerparcial\directores.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"peliculas.h"
+	"directores.h"
+	"utn.h"
+
+1538857646 c:\users\x__bi\desktop\programacionuno\parcialuno2018\primerparcial\peliculas.h
+
+1538855924 c:\users\x__bi\desktop\programacionuno\parcialuno2018\primerparcial\directores.h
+
+1538857602 source:c:\users\x__bi\desktop\programacionuno\parcialuno2018\primerparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"peliculas.h"
+	"directores.h"
+	"utn.h"
+
+1538857646 source:c:\users\x__bi\desktop\programacionuno\parcialuno2018\primerparcial\peliculas.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"peliculas.h"
+	"directores.h"
+	"utn.h"
+
+1538833237 c:\users\x__bi\desktop\programacionuno\parcialuno2018\primerparcial\utn.h
+
+1538937070 source:c:\users\x__bi\desktop\programacionuno\parcialuno2018\primerparcial\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+
