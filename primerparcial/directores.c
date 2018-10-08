@@ -10,10 +10,11 @@
 int inicializarDirectoresEstado(sDirector* arrayDirectores, int capacidad)
 {
     int retorno = -1;
+    int i;
     if(arrayDirectores != NULL && capacidad!=0)
     {
         retorno = 0;
-        for(int i=0; i<capacidad; i++)
+        for(i=0; i<capacidad; i++)
         {
             arrayDirectores[i].isEmpty = 1;
         }
@@ -54,7 +55,7 @@ int agregarDirector(sDirector* arrayDirectores, int capacidad, int auxiliarIdDir
     int retorno = -1;
     int idDirector = 0;
     int indexDirector = buscarLibreDirector(arrayDirectores,capacidad);
-    int posicionDirector = encontrarDirectorPorID(arrayDirectores, MAX, indexDirector);
+    int posicionDirector = encontrarDirectorPorID(arrayDirectores, MAX_DIRECTOR, indexDirector);
     if(capacidad > 0 && arrayDirectores != NULL)
     {
         if(indexDirector != -1)
@@ -63,7 +64,7 @@ int agregarDirector(sDirector* arrayDirectores, int capacidad, int auxiliarIdDir
             {
                 idDirector = nuevoIDDirector();
             }
-            arrayDirectores[indexDirector].id=idDirector+1;
+            arrayDirectores[indexDirector].id=idDirector;
             while(strlen(auxiliarNombre)>50)
             {
                 printf("El nombre es demasiado largo, ingreselo nuevamente: ");
@@ -81,7 +82,7 @@ int agregarDirector(sDirector* arrayDirectores, int capacidad, int auxiliarIdDir
 
             while(strlen(auxiliarPais)>50)
             {
-                printf("El nombre del pais es demasiado largo, ingresela nuevamente (01/01/1900) ");
+                printf("El nombre del pais es demasiado largo, ingresela nuevamente");
                 fflush(stdin);
                 gets(auxiliarPais);
             }
@@ -125,7 +126,7 @@ int mostrarListaDirectores(sDirector* arrayDirectores, int cantidad)
     {
         if(arrayDirectores[i].isEmpty == 0)
         {
-            printf("%5d %25s %15s %15s\n", arrayDirectores[i].id, arrayDirectores[i].nombre, arrayDirectores[i].fechaNacimiento, arrayDirectores[i].pais);
+            printf("%5d %25s %15s %20s\n", arrayDirectores[i].id, arrayDirectores[i].nombre, arrayDirectores[i].fechaNacimiento, arrayDirectores[i].pais);
         }
     }
     retorno = 0;
@@ -135,13 +136,16 @@ int mostrarListaDirectores(sDirector* arrayDirectores, int cantidad)
 int eliminarDirector(sDirector* arrayDirectores, int capacidad, int id)
 {
     int retorno = -1;
-    int auxiliarId;
+    int auxiliarIdDirector;
+    char auxiliarNombreDirector[50];
     char opcion;
 
-    printf("Ingrese el ID a buscar: \n");
-    scanf("%d", &auxiliarId);
-    int idDirector=encontrarDirectorPorID(arrayDirectores, MAX, auxiliarId);
-    if (idDirector>=0)
+    mostrarListaDirectores(arrayDirectores, MAX_DIRECTOR);
+    printf("Ingrese el nombre a buscar: \n");
+    fflush(stdin);
+    gets(auxiliarNombreDirector);
+    int idDirector=encontrarDirectorPorID(arrayDirectores, MAX_DIRECTOR, auxiliarIdDirector);
+    if (strcmp(arrayDirectores[idDirector].nombre, auxiliarNombreDirector) == 0)
     {
         printf("Confirma la baja? S/N\n");
         opcion=getChar("");

@@ -10,9 +10,9 @@
 int main()
 {
     sPelicula arrayPeliculas[MAX];
-    sDirector arrayDirectores[MAX];
+    sDirector arrayDirectores[MAX_DIRECTOR];
     inicializarPeliculasEstado(arrayPeliculas, MAX);
-    inicializarDirectoresEstado(arrayDirectores, MAX);
+    inicializarDirectoresEstado(arrayDirectores, MAX_DIRECTOR);
 
     int opcion;
     int flagValidacion = 0;
@@ -30,29 +30,44 @@ int main()
     char auxiliarPais[51];
     int lugarLibreDirector;
 
+
+
+
     do
     {
         opcion = menu();
         switch(opcion)
         {
         case 1:
-            flagValidacion++;
-            lugarLibre=buscarLibre(arrayPeliculas, MAX);
-            if (lugarLibre!=-1)
+            if (flagValidacionDirector != 0)
             {
-                getString("Ingrese el nombre: ", auxiliarTitulo);
-                auxiliarAnio = getInt("Ingrese el anio: ");
-                getString("Ingrese la nacionalidad: ", auxiliarNacionalidad);
-                auxiliarDirector = getInt("Ingrese el director: ");
+                flagValidacion++;
+                lugarLibre=buscarLibre(arrayPeliculas, MAX);
+                if (lugarLibre!=-1)
+                {
+                    getStringLetras("Ingrese el nombre: ", auxiliarTitulo);
+                    auxiliarAnio = getValidInt("Ingrese el anio: ","El año no es un año valido", 1900, 2018);
+                    getStringLetras("Ingrese la nacionalidad: ", auxiliarNacionalidad);
+                    mostrarListaDirectores(arrayDirectores, MAX_DIRECTOR);
+                    auxiliarDirector = getInt("Ingrese el director: ");
+                }
+                else
+                {
+                    printf("No hay mas espacio\n");
+                    system("pause");
+                    system("cls");
+                }
+                agregarPelicula(arrayPeliculas, MAX, auxiliarId, auxiliarTitulo, auxiliarAnio, auxiliarNacionalidad, auxiliarDirector);
+                break;
             }
             else
             {
-                printf("No hay mas espacio\n");
+                printf("No hay directores cargados, cargue un director primero.\n");
                 system("pause");
                 system("cls");
+                break;
             }
-            agregarPelicula(arrayPeliculas, MAX, auxiliarId, auxiliarTitulo, auxiliarAnio, auxiliarNacionalidad, auxiliarDirector);
-            break;
+
         case 2:
             if(flagValidacion != 0)
             {
@@ -81,7 +96,7 @@ int main()
             }
         case 4:
             flagValidacionDirector++;
-            lugarLibreDirector=buscarLibreDirector(arrayDirectores, MAX);
+            lugarLibreDirector=buscarLibreDirector(arrayDirectores, MAX_DIRECTOR);
             if (lugarLibre!=-1)
             {
                 getString("Ingrese el nombre: ", auxiliarNombre);
@@ -94,12 +109,12 @@ int main()
                 system("pause");
                 system("cls");
             }
-            agregarDirector(arrayDirectores, MAX, auxiliarIdDirector, auxiliarNombre, auxiliarFechaNacimiento, auxiliarPais);
+            agregarDirector(arrayDirectores, MAX_DIRECTOR, auxiliarIdDirector, auxiliarNombre, auxiliarFechaNacimiento, auxiliarPais);
             break;
         case 5:
-             if(flagValidacionDirector != 0)
+            if(flagValidacionDirector != 0)
             {
-                eliminarDirector(arrayDirectores, MAX, auxiliarId);
+                eliminarDirector(arrayDirectores, MAX_DIRECTOR, auxiliarId);
                 break;
             }
             else
@@ -110,29 +125,63 @@ int main()
                 break;
             }
         case 6:
-            if(flagValidacion != 0 && flagValidacionDirector != 0)
+            if(flagValidacion == 0 && flagValidacionDirector == 0)
+            {
+                printf("No se ingreso ningun dato\n");
+                system("pause");
+                system("cls");
+                break;
+            }
+            else
             {
                 opcion = subMenuMostrar();
                 switch(opcion)
                 {
                 case 1:
-                    mostrarListaPeliculas(arrayPeliculas, MAX);
-                    system("pause");
-                    system("cls");
-                    break;
+                    if(flagValidacion != 0)
+                    {
+                        mostrarListaPeliculas(arrayPeliculas, MAX);
+                        system("pause");
+                        system("cls");
+                        break;
+                    }
+                    else
+                    {
+                        printf("No hay peliculas cargadas\n");
+                        system("pause");
+                        system("cls");
+                        break;
+                    }
                 case 2:
-                    mostrarListaDirectores(arrayDirectores, MAX);
-                    system("pause");
-                    system("cls");
-                    break;
+                    if(flagValidacionDirector != 0)
+                    {
+                        mostrarListaDirectores(arrayDirectores, MAX_DIRECTOR);
+                        system("pause");
+                        system("cls");
+                        break;
+                    }
+                    else
+                    {
+                        printf("No hay directores cargados\n");
+                        system("pause");
+                        system("cls");
+                        break;
+                    }
+                case 3:
+                    if(flagValidacion != 0)
+                    {
+                        mostrarPeliculaMasAntigua(arrayPeliculas, MAX);
+                        system("pause");
+                        system("cls");
+                    }
+                    else
+                    {
+                        printf("No hay peliculas cargadas\n");
+                        system("pause");
+                        system("cls");
+                        break;
+                    }
                 }
-                break;
-            }
-            else
-            {
-                printf("No se ingreso ningun dato\n");
-                system("pause");
-                system("cls");
                 break;
             }
         case 7:

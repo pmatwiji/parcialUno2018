@@ -1,4 +1,4 @@
-#define MAX 2
+#define MAX 5
 #define ILOGICO -1
 #define LIBRE 1
 #define OCUPADO 0
@@ -23,3 +23,4 @@ int encontrarPeliculaPorID(sPelicula* arrayPeliculas, int capacidad, int id);
 int mostrarListaPeliculas(sPelicula* arrayPeliculas, int cantidad);
 void modificarPelicula(sPelicula* arrayPeliculas, int capacidad);
 int eliminarPelicula(sPelicula* arrayPeliculas, int capacidad, int id);
+void mostrarPeliculaMasAntigua(sPelicula* arrayPeliculas, int cantidad);

@@ -69,3 +69,45 @@
 	<time.h>
 	<string.h>
 
+1539005891 source:d:\matwijiszyn\parcialuno2018\primerparcial\directores.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"peliculas.h"
+	"directores.h"
+	"utn.h"
+
+1539007069 d:\matwijiszyn\parcialuno2018\primerparcial\peliculas.h
+
+1539002686 d:\matwijiszyn\parcialuno2018\primerparcial\directores.h
+
+1538998729 d:\matwijiszyn\parcialuno2018\primerparcial\utn.h
+
+1539007312 source:d:\matwijiszyn\parcialuno2018\primerparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"peliculas.h"
+	"directores.h"
+	"utn.h"
+
+1539008443 source:d:\matwijiszyn\parcialuno2018\primerparcial\peliculas.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"peliculas.h"
+	"directores.h"
+	"utn.h"
+
+1538998729 source:d:\matwijiszyn\parcialuno2018\primerparcial\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+

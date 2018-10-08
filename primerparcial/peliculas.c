@@ -7,14 +7,21 @@
 #include "directores.h"
 #include "utn.h"
 
+    int auxiliarId[5] = {1,2,3,4,5};
+    char auxiliarTitulo[][50]={"Terminator","venom","spidey","avengers","dr strange"};
+    int auxiliarAnio[5]={1990,2018,2016,2015,2016};
+    char auxiliarNacionalidad[][50]={"Usa","Usa","UK","Usa","Usa"};
+    int auxiliarDirector[5] = {1,2,2,3,4};
+
 
 int inicializarPeliculasEstado(sPelicula* arrayPeliculas, int capacidad)
 {
     int retorno = -1;
+    int i;
     if(arrayPeliculas != NULL && capacidad!=0)
     {
         retorno = 0;
-        for(int i=0; i<capacidad; i++)
+        for(i=0; i<capacidad; i++)
         {
             arrayPeliculas[i].isEmpty = 1;
         }
@@ -45,14 +52,14 @@ int menu()
         system("cls");
         fflush(stdin);
         printf("MENU:\n"
-           "1. Alta pelicula\n"
-           "2. Modificar\n"
-           "3. Baja pelicula\n"
-           "4. Alta director\n"
-           "5. Baja director\n"
-           "6. Mostrar\n"
-           "7. Salir\n"
-           "Ingrese una opcion: ");
+               "1. Alta pelicula\n"
+               "2. Modificar\n"
+               "3. Baja pelicula\n"
+               "4. Alta director\n"
+               "5. Baja director\n"
+               "6. Mostrar\n"
+               "7. Salir\n"
+               "Ingrese una opcion: ");
         fflush(stdin);
         scanf("%d", &opcion);
     }
@@ -94,11 +101,12 @@ int subMenuMostrar()
     fflush(stdin);
     printf("1. Mostrar lista peliculas\n"
            "2. Mostrar lista directores\n"
+           "3. Peliculas mas antiguas\n"
            "Ingrese una opcion: ");
     fflush(stdin);
     scanf("%d", &opcion);
 
-    while(opcion < 0 || opcion > 2)
+    while(opcion < 0 || opcion > 3)
     {
         printf("Por favor, ingrese una opcion valida\n");
         system("pause");
@@ -106,6 +114,7 @@ int subMenuMostrar()
         fflush(stdin);
         printf( "1. Mostrar lista peliculas\n"
                 "2. Mostrar lista directores\n"
+                "3. Peliculas mas antiguas\n"
                 "Ingrese una opcion: ");
         fflush(stdin);
         scanf("%d", &opcion);
@@ -210,6 +219,7 @@ int eliminarPelicula(sPelicula* arrayPeliculas, int capacidad, int id)
     int auxiliarId;
     char opcion;
 
+    mostrarListaPeliculas(arrayPeliculas, MAX);
     printf("Ingrese el ID a buscar: \n");
     scanf("%d", &auxiliarId);
     int idPelicula=encontrarPeliculaPorID(arrayPeliculas, MAX, auxiliarId);
@@ -256,9 +266,11 @@ void modificarPelicula(sPelicula* arrayPeliculas, int capacidad)
     char opcion;
     int auxiliarId;
 
+    mostrarListaPeliculas(arrayPeliculas, MAX);
     printf("Ingrese el ID a buscar: \n");
     scanf("%d", &auxiliarId);
     int idPelicula=encontrarPeliculaPorID(arrayPeliculas, MAX, auxiliarId);
+
     if (idPelicula>=0)
     {
         printf("ID encontrado, modifique los datos a continuacion: \n");
@@ -300,29 +312,7 @@ void modificarPelicula(sPelicula* arrayPeliculas, int capacidad)
             system("cls");
             break;
         }
-//        printf("Confirma la modificacion? S/N\n");
-//        opcion=getChar("");
-//        switch(opcion)
-//        {
-//        case 's':
-//            auxiliarNacionalidad[0]=toupper(auxiliarNacionalidad[0]);
-//            strcpy(arrayPeliculas[idPelicula].titulo, auxiliarTitulo);
-//            strcpy(arrayPeliculas[idPelicula].nacionalidad, auxiliarNacionalidad);
-//            arrayPeliculas[idPelicula].anio = auxiliarAnio;
-//            arrayPeliculas[idPelicula].director = auxiliarDirector;
-//            printf("Modificacion realizada con exito.\n");
-//            system("pause");
-//            system("cls");
-//            break;
-//        case 'n':
-//            printf("Se cancelo la modificacion.\n");
-//            system("pause");
-//            system("cls");
-//            break;
-//        default:
-//            printf("Ingrese una opcion valida.\n");
-//            break;
-//        }
+
     }
     else
     {
@@ -332,34 +322,6 @@ void modificarPelicula(sPelicula* arrayPeliculas, int capacidad)
     }
 }
 
-//int sortEmployees(sPelicula* arrayPeliculas, int cantidad)
-//{
-//    int retorno = -1;
-//    sPelicula aux;
-//    if(cantidad > 0 && arrayPeliculas != NULL)
-//    {
-//        for(int i=0; i<cantidad - 1; i++)
-//        {
-//            for(int j=i+1; j<cantidad; j++)
-//            {
-//                if(strcmp(arrayPeliculas[j].lastName, arrayPeliculas[i].lastName) < 0)
-//                {
-//                    aux = arrayPeliculas[i];
-//                    arrayPeliculas[i] = arrayPeliculas[j];
-//                    arrayPeliculas[j] = aux;
-//                }
-//                else if(strcmp(arrayPeliculas[j].lastName, arrayPeliculas[i].lastName) == 0 && arrayPeliculas[j].sector < arrayPeliculas[i].sector)
-//                {
-//                    aux = arrayPeliculas[i];
-//                    arrayPeliculas[i] = arrayPeliculas[j];
-//                    arrayPeliculas[j] = aux;
-//                }
-//            }
-//        }
-//        retorno = 0;
-//    }
-//    return retorno;
-//}
 
 int mostrarListaPeliculas(sPelicula* arrayPeliculas, int cantidad)
 {
@@ -375,4 +337,23 @@ int mostrarListaPeliculas(sPelicula* arrayPeliculas, int cantidad)
     }
     retorno = 0;
     return retorno;
+}
+
+void mostrarPeliculaMasAntigua(sPelicula* arrayPeliculas, int cantidad)
+{
+    int i;
+    int masAntigua;
+    printf("Las peliculas mas antiguas son: \n");
+    masAntigua = arrayPeliculas[0].anio;
+    for(i=0; i<cantidad; i++)
+    {
+        if(arrayPeliculas[i].isEmpty == 0)
+        {
+            if (arrayPeliculas[i].anio < masAntigua)
+            {
+                masAntigua = arrayPeliculas[i].anio;
+                printf("%s\n", arrayPeliculas[i].titulo);
+            }
+        }
+    }
 }

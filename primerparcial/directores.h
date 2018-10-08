@@ -1,4 +1,4 @@
-#define MAX 2
+#define MAX_DIRECTOR 500
 
 typedef struct
 {
